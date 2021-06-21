@@ -1,3 +1,5 @@
+USE employees;
+
 # part 1
 
 SELECT first_name FROM employees WHERE first_name IN ('Irena', 'Vidya', 'Maya') ;
