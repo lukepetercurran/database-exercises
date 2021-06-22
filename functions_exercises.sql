@@ -34,6 +34,25 @@ SELECT * FROM employees WHERE last_name like 'E%' ORDER BY emp_no;
 
 #  Functions Exercises
 
-SELECT DISTINCT CONCAT(first_name, ' ', last_name) FROM employees WHERE last_name like 'E%e';
+SELECT DISTINCT CONCAT(first_name, ' ', last_name)
+FROM employees
+WHERE last_name like 'E%e';
 
-SELECT * FROM employees WHERE birth_date = '19%%-12-24';
+SELECT * FROM employees
+WHERE DAY(birth_date) = 25
+  AND MONTH(birth_date) = 12;
+
+SELECT * FROM employees
+WHERE DAY(birth_date) = 25
+  AND MONTH(birth_date) = 12
+    AND YEAR(hire_date) LIKE '199%'
+        ORDER BY birth_date, hire_date DESC;
+
+SELECT * , DATEDIFF(hire_date, CURDATE()) FROM employees
+WHERE DAY(birth_date) = 25 AND MONTH(birth_date) = 12 AND YEAR(hire_date) LIKE '199%'
+ORDER BY DATEDIFF(hire_date, CURDATE()) DESC;
+
+SELECT * , DATEDIFF(hire_date, CURDATE()) FROM employees
+WHERE DAY(birth_date) = 25 AND MONTH(birth_date) = 12 AND YEAR(hire_date) LIKE '199%'
+ORDER BY DATEDIFF(CURDATE(), hire_date) DESC;
+
