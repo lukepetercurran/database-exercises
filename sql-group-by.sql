@@ -16,26 +16,13 @@ SELECT MIN(DATEDIFF(hire_date, birth_date)/365) FROM employees; # 20.0
 # GROUP BY combines duplicates into one single value for each group
 # GROUP BY consolidates rows based on a common column
 
-SELECT DISTINCT title FROM titles;
 
-SELECT DISTINCT last_name from employees
-WHERE last_name LIKE 'E%e'
-ORDER BY last_name;
+SELECT MIN(DATEDIFF(hire_date, birth_date)/365) AS youngest_age_at_hire FROM employees;
 
-SELECT DISTINCT first_name, last_name from employees
-WHERE last_name LIKE 'E%e'
-GROUP BY last_name, first_name;
+SELECT MIN(DATEDIFF(hire_date, birth_date)/365) AS 'youngest age at hire' FROM employees;
 
-SELECT DISTINCT last_name FROM employees
-WHERE last_name LIKE 'E%e'
-GROUP BY last_name
-ORDER BY last_name;
-
-SELECT COUNT(last_name), last_name from employees
-WHERE last_name lIKE 'E%e'
-GROUP BY last_name
-ORDER BY last_name;
-
-SELECT gender, COUNT(*) FROM employees
-WHERE first_name IN ('Irena', 'Vidya', 'Maya')
-GROUP BY gender;
+SELECT CONCAT(first_name, ' ', last_name) AS Name,
+       DATEDIFF(hire_date, birth_date)/365 AS 'Age when hired'
+FROM employees
+ORDER BY DATEDIFF(hire_date, birth_date)/365 DESC
+LIMIT 50;
