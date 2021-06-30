@@ -79,3 +79,4 @@ SELECT first_name, last_name, content, t.name FROM quotes
 JOIN quote_topic qt on quotes.id = qt.quote_id
 JOIN topics t on qt.topic_id = t.id
 JOIN authors a on quotes.author_id = a.id;
+#  remember to push this
