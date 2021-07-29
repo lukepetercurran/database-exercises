@@ -6,5 +6,7 @@ SELECT * FROM albums WHERE release_date > 1991;
 SELECT 'Albums with the genre disco' AS 'Query Two';
 SELECT * FROM albums WHERE genre = 'disco';
 
-SELECT 'Albums by The Eagles' AS 'Query Three'
+SELECT 'Albums by The Eagles' AS 'Query Three';
 SELECT * FROM albums WHERE artist = 'Eagles';
+
+SELECT * FROM albums;

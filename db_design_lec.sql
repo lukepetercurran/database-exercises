@@ -1,5 +1,22 @@
 USE codeup_test_db;
 
+DROP TABLE IF EXISTS quotes;
+
+CREATE TABLE quotes (
+                        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                        author_first_name VARCHAR(50),
+                        author_last_name  VARCHAR(100) NOT NULL,
+                        content TEXT NOT NULL,
+                        PRIMARY KEY (id)
+);
+
+INSERT INTO quotes (author_first_name, author_last_name, content)
+VALUES ('Douglas', 'Adams', 'I love deadlines. I love the whooshing noise they make as they go by.'),
+       ('Douglas', 'Adams', 'Don''t Panic.'),
+       ('Douglas', 'Adams', 'Time is an illusion. Lunchtime doubly so.'),
+       ('Mark', 'Twain', 'Clothes make the man. Naked people have little or no influence on society.'),
+       ('Kurt', 'Vonnegut', 'The universe is a big place, perhaps the biggest.');
+
 DROP TABLE IF EXISTS authors;
 
 CREATE TABLE authors (
@@ -13,6 +30,8 @@ INSERT INTO authors(first_name, last_name) VALUES
 ('Douglas', 'Adams'),
 ('Mark', 'Twain'),
 ('Kurt', 'Vonnegut');
+
+SELECT * FROM authors;
 
 DROP TABLE IF EXISTS quotes;
 
@@ -39,8 +58,6 @@ values ((select id from authors where first_name = 'Kurt' and last_name = 'Vonne
         'The universe is a big place, perhaps the biggest.');
 INSERT INTO quotes (author_id, content)
 VALUES ((select id from authors where first_name = 'Douglas' and last_name = 'Adams'), 'Don''t Panic.');
-
-SELECT * FROM quotes;
 
 SELECT quotes.content AS 'content', CONCAT(authors.first_name, ' ', authors.last_name)
                       AS 'author name' FROM quotes
@@ -71,6 +88,8 @@ CREATE TABLE quote_topic (
     FOREIGN KEY (topic_id) REFERENCES topics(id)
 );
 
+DESCRIBE topics;
+
 INSERT INTO quote_topic(quote_id, topic_id)
 VALUES (1, 2), (1, 3), (2, 4), (3, 1),
        (3, 2), (3, 3), (3, 4), (4, 2), (5, 1);
@@ -79,4 +98,3 @@ SELECT first_name, last_name, content, t.name FROM quotes
 JOIN quote_topic qt on quotes.id = qt.quote_id
 JOIN topics t on qt.topic_id = t.id
 JOIN authors a on quotes.author_id = a.id;
-#  remember to push this

@@ -11,7 +11,7 @@ SELECT 'ALL albums by Michael Jackson' AS 'Query Three';
 SELECT * FROM albums WHERE artist = 'Michael Jackson';
 
 -- to iew the sales BEFORE the update
-SELECT 'Sales BEFORE' AS 'Query Four'
+SELECT 'Sales BEFORE' AS 'Query Four';
 SELECT sales FROM albums;
 
 UPDATE albums
